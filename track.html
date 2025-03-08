@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Track Complaint - Complaint Redressal System</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="track.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="logo">
+                <h1><a href="index.html">CRS</a></h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="#track" class="active">Track Complaint</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <a href="login.html" class="login-btn">Login</a>
+        </nav>
+    </header>
+
+    <main class="track-container">
+        <div class="track-box">
+            <div class="search-section">
+                <h1>Track Your Complaint</h1>
+                <p class="subtitle">Enter your complaint reference number to check the status</p>
+                
+                <form id="trackForm" class="track-form">
+                    <div class="search-box">
+                        <input type="text" id="complaintId" placeholder="Enter Complaint ID (e.g., CRS123456)" 
+                               pattern="CRS[0-9]{6}" required>
+                        <button type="submit" class="search-btn">
+                            <i class="fas fa-search"></i> Track
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <div id="statusResult" class="status-section hidden">
+                <div class="status-header">
+                    <h2>Complaint Status</h2>
+                    <span class="complaint-id">CRS123456</span>
+                </div>
+
+                <div class="status-timeline">
+                    <div class="timeline-step completed">
+                        <div class="step-icon">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <div class="step-content">
+                            <h3>Complaint Filed</h3>
+                            <p class="date">January 15, 2024</p>
+                            <p class="description">Your complaint has been successfully registered in our system.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-step completed">
+                        <div class="step-icon">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <div class="step-content">
+                            <h3>Assigned to Officer</h3>
+                            <p class="date">January 16, 2024</p>
+                            <p class="description">Complaint assigned to Mr. John Doe (District Officer)</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-step active">
+                        <div class="step-icon">
+                            <i class="fas fa-cog"></i>
+                        </div>
+                        <div class="step-content">
+                            <h3>Under Processing</h3>
+                            <p class="date">January 17, 2024</p>
+                            <p class="description">Your complaint is being processed by the assigned officer.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-step">
+                        <div class="step-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="step-content">
+                            <h3>Resolved</h3>
+                            <p class="description">Pending resolution</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="complaint-details">
+                    <h3>Complaint Details</h3>
+                    <div class="details-grid">
+                        <div class="detail-item">
+                            <span class="label">Category:</span>
+                            <span class="value">Infrastructure</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="label">Subject:</span>
+                            <span class="value">Road Maintenance Issue</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="label">Location:</span>
+                            <span class="value">Main Street, Sector 12</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="label">Filing Date:</span>
+                            <span class="value">January 15, 2024</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="secondary-btn" onclick="window.print()">
+                        <i class="fas fa-print"></i> Print Status
+                    </button>
+                    <button id="reopenBtn" class="primary-btn">
+                        <i class="fas fa-redo"></i> Reopen Complaint
+                    </button>
+                </div>
+            </div>
+
+            <div id="noResult" class="no-result hidden">
+                <i class="fas fa-search"></i>
+                <h2>No Results Found</h2>
+                <p>We couldn't find any complaint with the provided reference number. Please check and try again.</p>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const trackForm = document.getElementById('trackForm');
+        const statusResult = document.getElementById('statusResult');
+        const noResult = document.getElementById('noResult');
+
+        trackForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const complaintId = document.getElementById('complaintId').value;
+            
+            // Simulate API call with setTimeout
+            setTimeout(() => {
+                if (complaintId.match(/CRS[0-9]{6}/)) {
+                    statusResult.classList.remove('hidden');
+                    noResult.classList.add('hidden');
+                    document.querySelector('.complaint-id').textContent = complaintId;
+                } else {
+                    statusResult.classList.add('hidden');
+                    noResult.classList.remove('hidden');
+                }
+            }, 1000);
+        });
+
+        // Reopen complaint functionality
+        document.getElementById('reopenBtn').addEventListener('click', function() {
+            if (confirm('Are you sure you want to reopen this complaint?')) {
+                alert('Complaint reopening request has been submitted.');
+            }
+        });
+    </script>
+</body>
+</html> 

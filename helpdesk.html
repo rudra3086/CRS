@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Helpdesk - Complaint Redressal System</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .helpdesk-container {
+            max-width: 1200px;
+            margin: 6rem auto 2rem;
+            padding: 0 2rem;
+        }
+
+        .helpdesk-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .helpdesk-header h1 {
+            font-size: 2.5rem;
+            color: var(--text-color);
+            margin-bottom: 1rem;
+        }
+
+        .helpdesk-header p {
+            color: #6b7280;
+            font-size: 1.1rem;
+        }
+
+        .helpdesk-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .support-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .support-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .support-card i {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .support-card h3 {
+            font-size: 1.3rem;
+            color: var(--text-color);
+            margin-bottom: 1rem;
+        }
+
+        .support-card p {
+            color: #6b7280;
+            margin-bottom: 1.5rem;
+        }
+
+        .support-card .card-btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background: var(--primary-color);
+            color: var(--white);
+            border-radius: 6px;
+            text-decoration: none;
+            transition: background 0.3s ease;
+        }
+
+        .support-card .card-btn:hover {
+            background: #1d4ed8;
+        }
+
+        .faq-section {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .faq-section h2 {
+            font-size: 1.8rem;
+            color: var(--text-color);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .faq-item {
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid #e5e7eb;
+            padding-bottom: 1.5rem;
+        }
+
+        .faq-question {
+            font-size: 1.1rem;
+            color: var(--text-color);
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-question i {
+            transition: transform 0.3s ease;
+        }
+
+        .faq-answer {
+            color: #6b7280;
+            line-height: 1.6;
+            display: none;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+
+        .ticket-section {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            margin-top: 3rem;
+        }
+
+        .ticket-section h2 {
+            font-size: 1.8rem;
+            color: var(--text-color);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .ticket-form .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .ticket-form label {
+            display: block;
+            font-size: 0.9rem;
+            color: var(--text-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .ticket-form input,
+        .ticket-form select,
+        .ticket-form textarea {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 1rem;
+            color: var(--text-color);
+            transition: border-color 0.3s ease;
+        }
+
+        .ticket-form input:focus,
+        .ticket-form select:focus,
+        .ticket-form textarea:focus {
+            border-color: var(--primary-color);
+            outline: none;
+        }
+
+        .ticket-form textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        .submit-ticket-btn {
+            width: 100%;
+            padding: 0.75rem;
+            background: var(--primary-color);
+            color: var(--white);
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .submit-ticket-btn:hover {
+            background: #1d4ed8;
+        }
+
+        @media (max-width: 768px) {
+            .helpdesk-container {
+                margin-top: 5rem;
+                padding: 0 1rem;
+            }
+
+            .helpdesk-header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="logo">
+                <h1><a href="index.html">CRS</a></h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="track.html">Track Complaint</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <a href="login.html" class="login-btn">Login</a>
+        </nav>
+    </header>
+
+    <main class="helpdesk-container">
+        <div class="helpdesk-header">
+            <h1>How Can We Help You?</h1>
+            <p>Find answers to common questions or get in touch with our support team.</p>
+        </div>
+
+        <div class="helpdesk-grid">
+            <div class="support-card">
+                <i class="fas fa-book"></i>
+                <h3>Knowledge Base</h3>
+                <p>Browse through our comprehensive guides and documentation.</p>
+                <a href="#faq-section" class="card-btn">View Guides</a>
+            </div>
+            <div class="support-card">
+                <i class="fas fa-ticket-alt"></i>
+                <h3>Submit Ticket</h3>
+                <p>Create a support ticket for technical assistance.</p>
+                <a href="#ticket-section" class="card-btn">Create Ticket</a>
+            </div>
+            <div class="support-card">
+                <i class="fas fa-comments"></i>
+                <h3>Live Chat</h3>
+                <p>Chat with our support team for immediate assistance.</p>
+                <a href="#" class="card-btn" onclick="alert('Live chat feature coming soon!')">Start Chat</a>
+            </div>
+        </div>
+
+        <section id="faq-section" class="faq-section">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-item">
+                <div class="faq-question">
+                    How do I submit a complaint? <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    To submit a complaint, log in to your account and click on the "New Complaint" button in the dashboard. Fill out the complaint form with all necessary details and submit it. You'll receive a confirmation email with your complaint reference number.
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    How can I track my complaint status? <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    You can track your complaint status by visiting the "Track Complaint" page and entering your complaint reference number. Alternatively, log in to your account to view all your complaints and their current status.
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    What are the response time expectations? <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    We aim to respond to all complaints within 24-48 hours. Complex issues may take longer to resolve. You'll receive regular updates on your complaint status through email notifications.
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    How do I escalate my complaint? <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    If you're not satisfied with the resolution or if your complaint hasn't been addressed within the expected timeframe, you can escalate it by clicking the "Escalate" button on your complaint details page or by contacting our support team.
+                </div>
+            </div>
+        </section>
+
+        <section id="ticket-section" class="ticket-section">
+            <h2>Submit a Support Ticket</h2>
+            <form class="ticket-form" id="ticketForm">
+                <div class="form-group">
+                    <label for="ticket-subject">Subject</label>
+                    <input type="text" id="ticket-subject" required placeholder="Brief description of your issue">
+                </div>
+                <div class="form-group">
+                    <label for="ticket-type">Type of Issue</label>
+                    <select id="ticket-type" required>
+                        <option value="">Select issue type</option>
+                        <option value="technical">Technical Issue</option>
+                        <option value="account">Account Related</option>
+                        <option value="complaint">Complaint Status</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="ticket-priority">Priority</label>
+                    <select id="ticket-priority" required>
+                        <option value="">Select priority level</option>
+                        <option value="low">Low</option>
+                        <option value="medium">Medium</option>
+                        <option value="high">High</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="ticket-description">Description</label>
+                    <textarea id="ticket-description" required placeholder="Please provide detailed information about your issue..."></textarea>
+                </div>
+                <button type="submit" class="submit-ticket-btn">Submit Ticket</button>
+            </form>
+        </section>
+    </main>
+
+    <script>
+        // FAQ Toggle
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const faqItem = question.parentElement;
+                faqItem.classList.toggle('active');
+            });
+        });
+
+        // Ticket Form Submission
+        document.getElementById('ticketForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for submitting your ticket. Our support team will respond shortly.');
+            this.reset();
+        });
+    </script>
+</body>
+</html> 

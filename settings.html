@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - Complaint Redressal System</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="settings.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="logo">
+                <h1><a href="index.html">CRS</a></h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="track.html">Track Complaint</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <a href="login.html" class="login-btn">Login</a>
+        </nav>
+    </header>
+
+    <main class="settings-container">
+        <div class="settings-header">
+            <h1>Settings</h1>
+            <p>Manage your account preferences and settings</p>
+        </div>
+
+        <div class="settings-grid">
+            <nav class="settings-nav">
+                <ul>
+                    <li class="active" data-section="profile"><i class="fas fa-user"></i> Profile</li>
+                    <li data-section="notifications"><i class="fas fa-bell"></i> Notifications</li>
+                    <li data-section="security"><i class="fas fa-shield-alt"></i> Security</li>
+                    <li data-section="preferences"><i class="fas fa-sliders-h"></i> Preferences</li>
+                </ul>
+            </nav>
+
+            <div class="settings-content">
+                <section id="profile" class="settings-section active">
+                    <h2>Profile Settings</h2>
+                    <form id="profileForm">
+                        <div class="form-group">
+                            <label for="fullName">Full Name</label>
+                            <input type="text" id="fullName" value="John Doe">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" value="john.doe@example.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" value="+1 234 567 890">
+                        </div>
+                        <div class="form-group">
+                            <label for="department">Department</label>
+                            <select id="department">
+                                <option value="it">IT Department</option>
+                                <option value="hr">HR Department</option>
+                                <option value="finance">Finance Department</option>
+                                <option value="operations">Operations</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="save-btn">Save Changes</button>
+                    </form>
+                </section>
+
+                <section id="notifications" class="settings-section">
+                    <h2>Notification Settings</h2>
+                    <div class="toggle-switch">
+                        <label class="switch">
+                            <input type="checkbox" checked>
+                            <span class="slider"></span>
+                        </label>
+                        <label>Email Notifications</label>
+                    </div>
+                    <div class="toggle-switch">
+                        <label class="switch">
+                            <input type="checkbox" checked>
+                            <span class="slider"></span>
+                        </label>
+                        <label>SMS Notifications</label>
+                    </div>
+                    <div class="toggle-switch">
+                        <label class="switch">
+                            <input type="checkbox">
+                            <span class="slider"></span>
+                        </label>
+                        <label>Push Notifications</label>
+                    </div>
+                    <div class="toggle-switch">
+                        <label class="switch">
+                            <input type="checkbox" checked>
+                            <span class="slider"></span>
+                        </label>
+                        <label>Status Update Notifications</label>
+                    </div>
+                    <button class="save-btn">Save Changes</button>
+                </section>
+
+                <section id="security" class="settings-section">
+                    <h2>Security Settings</h2>
+                    <form id="securityForm">
+                        <div class="form-group">
+                            <label for="currentPassword">Current Password</label>
+                            <input type="password" id="currentPassword">
+                        </div>
+                        <div class="form-group">
+                            <label for="newPassword">New Password</label>
+                            <input type="password" id="newPassword">
+                        </div>
+                        <div class="form-group">
+                            <label for="confirmPassword">Confirm New Password</label>
+                            <input type="password" id="confirmPassword">
+                        </div>
+                        <div class="toggle-switch">
+                            <label class="switch">
+                                <input type="checkbox" checked>
+                                <span class="slider"></span>
+                            </label>
+                            <label>Two-Factor Authentication</label>
+                        </div>
+                        <button type="submit" class="save-btn">Update Password</button>
+                    </form>
+                </section>
+
+                <section id="preferences" class="settings-section">
+                    <h2>Preferences</h2>
+                    <div class="form-group">
+                        <label for="language">Language</label>
+                        <select id="language">
+                            <option value="en">English</option>
+                            <option value="es">Spanish</option>
+                            <option value="fr">French</option>
+                            <option value="de">German</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="timezone">Timezone</label>
+                        <select id="timezone">
+                            <option value="utc">UTC</option>
+                            <option value="est">Eastern Time</option>
+                            <option value="pst">Pacific Time</option>
+                            <option value="ist">India Standard Time</option>
+                        </select>
+                    </div>
+                    <div class="toggle-switch">
+                        <label class="switch">
+                            <input type="checkbox">
+                            <span class="slider"></span>
+                        </label>
+                        <label>Dark Mode</label>
+                    </div>
+                    <button class="save-btn">Save Preferences</button>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Settings Navigation
+        document.querySelectorAll('.settings-nav li').forEach(item => {
+            item.addEventListener('click', () => {
+                // Update active nav item
+                document.querySelector('.settings-nav li.active').classList.remove('active');
+                item.classList.add('active');
+
+                // Show corresponding section
+                const sectionId = item.dataset.section;
+                document.querySelector('.settings-section.active').classList.remove('active');
+                document.getElementById(sectionId).classList.add('active');
+            });
+        });
+
+        // Form Submissions
+        const forms = document.querySelectorAll('form');
+        forms.forEach(form => {
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                alert('Settings saved successfully!');
+            });
+        });
+    </script>
+</body>
+</html> 
